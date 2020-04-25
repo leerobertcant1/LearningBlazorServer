@@ -1,7 +1,9 @@
 ﻿@page "/newpage"
 
+@using Microsoft.Extensions.Logging
 @using LearningBlazorServer.Data
 @inject IDummyDataService _dummyDataService
+@inject ILogger<NewPage> _logger
 
 <h1>New Page</h1>
 
@@ -18,6 +20,8 @@
 
     protected override void OnInitialized()
     {
-        dummyData =  _dummyDataService.GetDummyData();
+        dummyData = _dummyDataService.GetDummyData();
+
+        _logger.LogInformation($"The service has provided the data {dummyData}");
     }
 }

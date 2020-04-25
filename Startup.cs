@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LearningBlazorServer.Data;
+using Microsoft.Extensions.Logging;
 
 namespace LearningBlazorServer
 {
