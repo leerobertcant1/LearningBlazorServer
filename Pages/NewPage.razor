@@ -3,6 +3,7 @@
 @using Microsoft.Extensions.Logging
 @using LearningBlazorServer.Data
 @inject IDummyDataService _dummyDataService
+@inject Microsoft.Extensions.Configuration.IConfiguration _config;
 @inject ILogger<NewPage> _logger
 
 <h1>New Page</h1>
@@ -12,14 +13,16 @@
 </p>
 
 <p>
-    Dummy data service data: @dummyData
+    Dummy data config data: <b>@configData</b> <br/>
+    Dummy data service data: <b>@dummyData</b>
 </p>
 
 @code{
-    private string dummyData = string.Empty;
+    private string configData, dummyData = string.Empty;
 
     protected override void OnInitialized()
     {
+        configData = _config.GetSection("DummyDataConfig").Value;
         dummyData = _dummyDataService.GetDummyData();
 
         _logger.LogInformation($"The service has provided the data {dummyData}");
