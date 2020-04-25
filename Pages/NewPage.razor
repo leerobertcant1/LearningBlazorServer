@@ -1,7 +1,23 @@
 ﻿@page "/newpage"
 
+@using LearningBlazorServer.Data
+@inject IDummyDataService _dummyDataService
+
 <h1>New Page</h1>
 
 <p>
     This is a new Razor page component.
 </p>
+
+<p>
+    Dummy data service data: @dummyData
+</p>
+
+@code{
+    private string dummyData = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        dummyData =  _dummyDataService.GetDummyData();
+    }
+}

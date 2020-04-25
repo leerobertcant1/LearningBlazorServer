@@ -21,6 +21,7 @@ namespace LearningBlazorServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<IDummyDataService, DummyService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
