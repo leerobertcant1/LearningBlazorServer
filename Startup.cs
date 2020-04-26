@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LearningBlazorServer.Data;
+using Data.Data;
+using Data.DataAccess;
 
 namespace LearningBlazorServer
 {
@@ -22,6 +24,8 @@ namespace LearningBlazorServer
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IDummyDataService, DummyService>();
+            services.AddScoped<IDataService, DataService>();
+            services.AddScoped<ISqlDataAccess, SqlDataAccess>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

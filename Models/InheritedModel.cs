@@ -11,5 +11,7 @@ namespace LearningBlazorServer.Models
                 return "this is inherited data"; 
             } 
         }
+
+
     }
 }
