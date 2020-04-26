@@ -1,10 +1,15 @@
 ﻿@page "/newpage"
 
+@using LearningBlazorServer.Components
 @using Microsoft.Extensions.Logging
+
 @using LearningBlazorServer.Data
+
 @inject IDummyDataService _dummyDataService
 @inject Microsoft.Extensions.Configuration.IConfiguration _config;
 @inject ILogger<NewPage> _logger
+
+@inherits LearningBlazorServer.Models.InheritedModel
 
 <h1>New Page</h1>
 
@@ -13,18 +18,21 @@
 </p>
 
 <p>
-    Dummy data config data: <b>@configData</b> <br/>
+    Dummy data config data: <b>@configData</b> <br />
     Dummy data service data: <b>@dummyData</b>
 </p>
 
+<!-- Inherited data comes from CounterModel -->
+<p>The inherited data is : <b>@InheritedData</b></p>
+
+<NewPageComponent></NewPageComponent>
+
 @code{
     private string configData, dummyData = string.Empty;
-
     protected override void OnInitialized()
     {
         configData = _config.GetSection("DummyDataConfig").Value;
         dummyData = _dummyDataService.GetDummyData();
-
         _logger.LogInformation($"The service has provided the data {dummyData}");
     }
 }

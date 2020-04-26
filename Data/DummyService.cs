@@ -4,7 +4,7 @@
     {
         public string GetDummyData()
         {
-            return "[ Dummy Data returned from the Service ]";
+            return "Dummy Data returned from the Service";
         }
     }
 }
