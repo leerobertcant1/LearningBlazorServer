@@ -1,6 +1,8 @@
 ﻿using Data.Data;
 using Data.Models;
 using LearningBlazorServer.Models;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace LearningBlazorServer.Data
 {
@@ -20,6 +22,19 @@ namespace LearningBlazorServer.Data
         public void CreateRecord(NewPageComponentModel newPageComponentModel)
         {
             _dataService.Create(new DummyDataModel { ID = newPageComponentModel.Id, Value = newPageComponentModel.Value });
+        }
+
+        public IEnumerable<NewPageComponentModel> GetAll()
+        {
+            var allRecords = _dataService.GetAll();
+            var records = new List<NewPageComponentModel>();
+
+            foreach (var record in allRecords)
+            {
+                records.Add(new NewPageComponentModel { Id = record.ID, Value = record.Value });
+            }
+
+            return records;
         }
     }
 }

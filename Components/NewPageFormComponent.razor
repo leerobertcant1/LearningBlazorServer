@@ -15,17 +15,34 @@
     <button class="btn-primary" type="submit">Submit</button>
 </EditForm>
 
-<p>@response</p>
+<p>@response</p><br/>
+
+<h3>Read people</h3>
+<EditForm Model="@componentModel" OnValidSubmit="GetDummyData">
+    <button class="btn-primary" type="submit">Submit</button>
+</EditForm>
+
+<br/>
+<p>@dummyDataRecords</p><br/>
 
 @code {
     private LearningBlazorServer.Models.NewPageComponentModel componentModel = new Models.NewPageComponentModel();
-    private string response = string.Empty;
-
+    private string dummyDataRecords, response = string.Empty;
 
     private void SetValidSubmit()
     {
         response = $"Item created: {componentModel.Id} : {componentModel.Value}";
 
         _dummyDataService.CreateRecord(componentModel);
+    }
+
+    private void GetDummyData()
+    {
+        var dummyDataItems = _dummyDataService.GetAll();
+
+        foreach (var dummyItem in dummyDataItems)
+        {
+            dummyDataRecords += $"Dummy item: {dummyItem.Id} : {dummyItem.Value}, ";
+        }
     }
 }
