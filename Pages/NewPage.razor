@@ -22,10 +22,16 @@
     Dummy data service data: <b>@dummyData</b>
 </p>
 
+<p>
+    Parameter value passed from component
+</p>
+
 <!-- Inherited data comes from CounterModel -->
 <p>The inherited data is : <b>@InheritedData</b></p>
 
-<NewPageComponent></NewPageComponent>
+<NewPageComponent ParameterValue="Passed through value"></NewPageComponent>
+
+<button @onclick="ButtonClickEvent">Fire event</button>
 
 @code{
     private string configData, dummyData = string.Empty;
@@ -34,5 +40,13 @@
         configData = _config.GetSection("DummyDataConfig").Value;
         dummyData = _dummyDataService.GetDummyData();
         _logger.LogInformation($"The service has provided the data {dummyData}");
+    }
+
+    [Parameter]
+    public EventCallback<string> EventFire { get; set; }
+
+    private void ButtonClickEvent()
+    {
+        EventFire.InvokeAsync("Event fired");
     }
 }

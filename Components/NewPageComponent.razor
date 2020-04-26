@@ -1,4 +1,53 @@
 ﻿<hr />
-<h3>NewPageComponent</h3>
+<h3>New Page Component</h3>
 
 <p>This is the component</p>
+
+<p>Passed through parameter value: <b>@ParameterValue</b></p>
+
+<p>Component Model id: <b>@ComponentModel.Id</b> <br />Component Model Value: <b>@ComponentModel.Value</b></p>
+
+<br/>
+<p>Foreach component values:</p>
+@foreach (var componentModel in ComponentModels)
+{
+    <p>Component Model id: <b>@componentModel.Id</b> <br />Component Model Value: <b>@componentModel.Value</b></p>
+}
+
+<hr />
+
+@code{
+    public LearningBlazorServer.Models.NewPageComponentModel ComponentModel = new Models.NewPageComponentModel
+    {
+        Id = 1,
+        Value = "New page value"
+    };
+
+    public IEnumerable<LearningBlazorServer.Models.NewPageComponentModel> ComponentModels = new List<Models.NewPageComponentModel>
+    {
+        new Models.NewPageComponentModel
+        {
+            Id = 2,
+            Value = "New page value 1"
+        },
+         new Models.NewPageComponentModel
+        {
+            Id = 3,
+            Value = "New page value 2"
+        },
+          new Models.NewPageComponentModel
+        {
+            Id = 3,
+            Value = "New page value 3"
+        }
+    };
+
+    [Parameter]
+    public string ParameterValue { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
+}
