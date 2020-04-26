@@ -31,7 +31,9 @@
 
 <NewPageComponent ParameterValue="Passed through value"></NewPageComponent>
 
-<button @onclick="ButtonClickEvent">Fire event</button>
+<button class="btn-primary" @onclick="ButtonClickEvent">Fire event</button>
+
+<NewPageFormComponent></NewPageFormComponent>
 
 @code{
     private string configData, dummyData = string.Empty;

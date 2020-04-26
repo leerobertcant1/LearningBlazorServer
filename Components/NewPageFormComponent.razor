@@ -1,0 +1,26 @@
+﻿<hr />
+
+<h3>New Page Form Component</h3>
+<p>Component ID: @componentModel.Id</p>
+<p>Component Value: @componentModel.Value</p>
+
+<EditForm Model="@componentModel" OnValidSubmit="SetValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <label>ID:&nbsp;</label><InputNumber id="id" @bind-Value="componentModel.Id"></InputNumber><br/>
+    <label>Value:&nbsp;</label><InputText id="value" @bind-Value="componentModel.Value"></InputText><br/>
+    <button class="btn-primary" type="submit">Submit</button>
+</EditForm>
+
+<p>@response</p>
+
+@code {
+    private LearningBlazorServer.Models.NewPageComponentModel componentModel = new Models.NewPageComponentModel();
+    private string response = string.Empty;
+
+    private void SetValidSubmit()
+    {
+        response = $"Item created: {componentModel.Id} : {componentModel.Value}";
+    }
+}
